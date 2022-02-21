@@ -5,7 +5,17 @@ import {User} from "../entity/User";
 export class UserController {
 
     private userRepository = getRepository(User);
-
+    static listAll = async (req: Request, res: Response) => {
+        //Get users from database
+        const userRepository = getRepository(User);
+        const users = await userRepository.find({
+          select: ["id"] //We dont want to send the passwords on response
+        });
+      
+        //Send the users object
+        res.send(users);
+      };
+      
     async all(request: Request, response: Response, next: NextFunction) {
         return this.userRepository.find();
     }

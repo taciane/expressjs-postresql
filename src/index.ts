@@ -5,7 +5,7 @@ import * as bodyParser from "body-parser";
 import {Request, Response} from "express";
 import {Routes} from "./routes";
 import {User} from "./entity/User";
-
+// import routes from "./routes";
 createConnection().then(async connection => {
 
     // create express app
@@ -27,12 +27,14 @@ createConnection().then(async connection => {
 
     // setup express app here
     // ...
-
+    // app.use("/")
     // start express server
-    app.listen(3000);
+    app.listen(3000, () => {
+        console.log("serv START ..");
+    });
 
     // insert new users for test
-    await connection.manager.save(connection.manager.create(User, {
+    /* await connection.manager.save(connection.manager.create(User, {
         firstName: "Timber",
         lastName: "Saw",
         age: 27
@@ -41,7 +43,7 @@ createConnection().then(async connection => {
         firstName: "Phantom",
         lastName: "Assassin",
         age: 24
-    }));
+    })); */
 
     console.log("Express server has started on port 3000. Open http://localhost:3000/users to see results");
 

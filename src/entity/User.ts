@@ -12,6 +12,9 @@ export class User {
     @Column()
     lastName: string;
 
+    // @Column()
+    // username: string;
+
     @Column()
     age: number;
 
