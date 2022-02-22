@@ -11,7 +11,7 @@ createConnection().then(async connection => {
     // create express app
     const app = express();
     app.use(bodyParser.json());
-
+    app.set('env', process.env.APP_ENV);
     // register express routes from defined application routes
     Routes.forEach(route => {
         (app as any)[route.method](route.route, (req: Request, res: Response, next: Function) => {
@@ -27,19 +27,19 @@ createConnection().then(async connection => {
 
     // setup express app here
     // ...
-    // app.use("/")
+
     // start express server
     app.listen(3000, () => {
         console.log("serv START ..");
     });
 
     // insert new users for test
-    /* await connection.manager.save(connection.manager.create(User, {
+    /*await connection.manager.save(connection.manager.create(User, {
         firstName: "Timber",
         lastName: "Saw",
         age: 27
     }));
-    await connection.manager.save(connection.manager.create(User, {
+     await connection.manager.save(connection.manager.create(User, {
         firstName: "Phantom",
         lastName: "Assassin",
         age: 24
